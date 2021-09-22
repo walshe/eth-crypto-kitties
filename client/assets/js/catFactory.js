@@ -30,12 +30,15 @@ function earColor(color,code) {
     $('.cat__ear--left, .cat__ear--right').css('background', '#' + color)  //This changes the color of the cat
     $('#earcolorbadge').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnaears').html(code) //This updates the body color part of the DNA that is displayed below the cat
+
 }
 
 function tailColor(color,code) {
     $('.cat__tail').css('background', '#' + color)  //This changes the color of the cat
     $('#tailcolorbadge').html('code: '+code) //This updates text of the badge next to the slider
     $('#dnatail').html(code) //This updates the body color part of the DNA that is displayed below the cat
+
+
 }
 
 

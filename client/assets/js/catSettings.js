@@ -37,8 +37,9 @@ function getDna(){
     var dna = ''
     dna += $('#dnabody').html()
     dna += $('#dnamouth').html()
-    dna += $('#dnaeyes').html()
+    //dna += $('#dnaeyes').html()
     dna += $('#dnaears').html()
+    dna += $('#dnatail').html()
     dna += $('#dnashape').html()
     dna += $('#dnadecoration').html()
     dna += $('#dnadecorationMid').html()
@@ -135,7 +136,7 @@ $('#animation').change(()=>{
 })
 
 $('#randomKittyButton').click(()=>{
-  console.log("randomKittyButton changed")
+  console.log("randomKittyButton clicked")
 
   //between 10 and 98: Math.floor(Math.random() * 89 ) + 10
 
@@ -158,12 +159,14 @@ $('#randomKittyButton').click(()=>{
 })
 
 $('#defaultKittyButton').click(()=>{
-  console.log("defaultKittyButton changed")
+  console.log("defaultKittyButton clicked")
   renderCat(defaultDNA)
   
 })
 
-$('#newKittyButton').click(()=>{
-  console.log("newKittyButton changed")
+//created the random or default kitty
+$('#createKittyButton').click(()=>{
+  console.log("newKittyButton clicked ", getDna())
+  createKittyInBlockchain(getDna())
   
 })

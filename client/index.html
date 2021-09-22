@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <script src="assets/bootstrap/js/popper.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/web3.min.js"></script>
+    <script src="./abi.js"></script>
+    
 
     <link rel="stylesheet" href="assets/css/mystyle.css">
     <link rel="stylesheet" href="assets/css/cats.css">
@@ -97,8 +100,6 @@
                     
                 </div>
                 
-                
-                
             </div>
 
             <div class="col-lg-7 cattributes m-2 light-b-shadow">
@@ -174,16 +175,27 @@
             </div>
 
         </div>
-        <br/>
-        <div class="row">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button id="randomKittyButton" type="button" class="btn btn-primary">Get a random Kitty</button>
-                <button id="defaultKittyButton" type="button" class="btn btn-secondary">Default Kitty</button>
-                <button id="newKittyButton" type="button" class="btn btn-success">Create a new Kitty</button>
-            </div>        
-        </div>
 
     </div>
+    <div class="container p-5" style="margin-top: 12vh;margin-bottom: 10vh;">
+                
+                    
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button id="randomKittyButton" type="button" class="btn btn-primary">Get a random Kitty</button>
+            <button id="defaultKittyButton" type="button" class="btn btn-secondary">Default Kitty</button>
+            
+        </div>        
+    
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button id="createKittyButton" type="button" class="btn btn-success">Create the Kitty</button>
+        </div>
+
+        <div class="alert alert-success" role="alert" id="kittyCreation" style="display: none;">
+            
+        </div>
+
+</div>
+    
 
 
 
@@ -193,6 +205,7 @@
     </footer>
 
 </body>
+<script src="index.js"></script>
 <script src="assets/js/colors.js"></script>
 <script src="assets/js/catSettings.js"></script>
 <script src="assets/js/catFactory.js"></script>
