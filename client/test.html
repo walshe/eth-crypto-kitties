@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy kitties </title>
+    <script type="text/javascript" src="assets/js/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="assets/bootstrap/js/popper.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/web3.min.js"></script>
+    <script src="./abi.js"></script>
+
+
+    <link rel="stylesheet" href="assets/css/mystyle.css">
+    <link rel="stylesheet" href="assets/css/cats.css">
+    <link rel="stylesheet" href="assets/css/colors.css">
+    <link rel="stylesheet" href="assets/css/factory.css">
+    <link rel="stylesheet" href="assets/css/frontend.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+
+    <script type="text/javascript">
+        window.onload = function(){
+            $.get("navbar.html", function(data){
+                $("#common-navbar").html(data);
+                $('.navbar-nav').find('li:nth-child(2)')
+                  .addClass('active')
+                  .find('a').append('<span class="sr-only">(current)</span>');
+            });
+        }
+      </script>
+</head>
+
+<body>
+
+    <div id="common-navbar"></div> 
+
+    test
+    <footer align="left">
+        <p>TODO</p>
+    </footer>
+
+</body>
+<script src="index.js"></script>
+<script src="assets/js/colors.js"></script>
+<script src="assets/js/catSettings.js"></script>
+<script src="assets/js/catFactory.js"></script>
+
+</html>

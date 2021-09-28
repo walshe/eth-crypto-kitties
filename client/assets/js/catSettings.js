@@ -50,7 +50,7 @@ function getDna(){
     return parseInt(dna)
 }
 
-function renderCat(dna){
+function renderCat(dna, tokenId){
     headColor(colors[dna.headColor],dna.headColor)
     $('#bodycolor').val(dna.headColor)
 
