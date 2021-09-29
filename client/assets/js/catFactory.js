@@ -14,31 +14,29 @@ function genColors(){
     return colors
 }
 
-function headColor(color,code) {
-    $('.cat__head, .cat__chest').css('background', '#' + color)  //This changes the color of the cat
+function headColor(color,code, tokenId = "") {
+    $(`#cat__head${tokenId}, #cat__chest${tokenId}`).css('background', '#' + color)  //This changes the color of the cat
     $('#bodycolorbadge').html('code: '+code) //This updates text of the badge next to the slider
-    $('#dnabody').html(code) //This updates the body color part of the DNA that is displayed below the cat
+    $(`#dnabody${tokenId}`).html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
 
-function mouthColor(color,code) {
-    $('.cat__mouth-contour, .cat__mouth-left, .cat__mouth-right').css('background', '#' + color)  //This changes the color of the cat
+function mouthColor(color,code, tokenId = "") {
+    $(`#cat__mouth-contour${tokenId}, #cat__mouth-left${tokenId}, #cat__mouth-right${tokenId}`).css('background', '#' + color)  //This changes the color of the cat
     $('#mouthcodebadge').html('code: '+code) //This updates text of the badge next to the slider
-    $('#dnamouth').html(code) //This updates the body color part of the DNA that is displayed below the cat
+    $(`#dnamouth${tokenId}`).html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
 
-function earColor(color,code) {
-    $('.cat__ear--left, .cat__ear--right').css('background', '#' + color)  //This changes the color of the cat
+function earColor(color,code, tokenId = "") {
+    $(`#leftEar${tokenId}, #rightEar${tokenId}`).css('background', '#' + color)  //This changes the color of the cat
     $('#earcolorbadge').html('code: '+code) //This updates text of the badge next to the slider
-    $('#dnaears').html(code) //This updates the body color part of the DNA that is displayed below the cat
+    $(`#dnaears${tokenId}`).html(code) //This updates the body color part of the DNA that is displayed below the cat
 
 }
 
-function tailColor(color,code) {
-    $('.cat__tail').css('background', '#' + color)  //This changes the color of the cat
+function tailColor(color,code, tokenId = "") {
+    $(`#cat__tail${tokenId}`).css('background', '#' + color)  //This changes the color of the cat
     $('#tailcolorbadge').html('code: '+code) //This updates text of the badge next to the slider
-    $('#dnatail').html(code) //This updates the body color part of the DNA that is displayed below the cat
-
-
+    $(`#dnatail${tokenId}`).html(code) //This updates the body color part of the DNA that is displayed below the cat
 }
 
 
@@ -46,46 +44,46 @@ function tailColor(color,code) {
 //###################################################
 //Functions below will be used later on in the project
 //###################################################
-function eyeVariation(num) {
+function eyeVariation(num, tokenId = "") {
 
-    $('#dnashape').html(num)
+    $(`#dnashape${tokenId}`).html(num)
     switch (num) {
         case 1:
-            normalEyes()
-            $('#eyeshapebadge').html('Basic') //badge
+            normalEyes(tokenId)
+            $(`#eyeshapebadge${tokenId}`).html('Basic') //badge
             break
         case 2:
-            normalEyes(); //reset
-            eyesType1();
-            $('#eyeshapebadge').html('Chill') //badge
+            normalEyes(tokenId); //reset
+            eyesType1(tokenId);
+            $(`#eyeshapebadge${tokenId}`).html('Chill') //badge
             break           
         case 3:
-            normalEyes(); //reset
-            eyesType2();
-            $('#eyeshapebadge').html('Up') //badge
+            normalEyes(tokenId); //reset
+            eyesType2(tokenId);
+            $(`#eyeshapebadge${tokenId}`).html('Up') //badge
             break               
         default:
-            console.log("not valid value")
+            console.log("not valid value", num)
             break     
     }
 }
 
-function decorationVariation(num) {
-    $('#dnadecoration').html(num)
+function decorationVariation(num, tokenId = "") {
+    $(`#dnadecoration${tokenId}`).html(num)
     switch (num) {
         case 1:
-            $('#decorationpatternbadge').html('Basic')
-            normaldecoration()
+            $(`#decorationpatternbadge${tokenId}`).html('Basic')
+            normaldecoration(tokenId)
             break;
         case 2:
-            $('#decorationpatternbadge').html('M shaped')
-            normaldecoration()
-            decoration1()
+            $(`#decorationpatternbadge${tokenId}`).html('M shaped')
+            normaldecoration(tokenId)
+            decoration1(tokenId)
             break
         case 3:
-            $('#decorationpatternbadge').html('Y shaped')
-            normaldecoration()
-            decoration2()
+            $(`#decorationpatternbadge${tokenId}`).html('Y shaped')
+            normaldecoration(tokenId)
+            decoration2(tokenId)
             break      
         default:
             console.log("invalid code");          
@@ -93,139 +91,139 @@ function decorationVariation(num) {
     }
 }
 
-function decorationMidColor(color, code) {
+function decorationMidColor(color, code, tokenId = "") {
     $('#decorationmidcolorbadge').html(code)
-    $('#dnadecorationMid').html(code)
-    $('.cat__head-dots').css('background', '#' + color)  //This changes the color of the cat
+    $(`#dnadecorationMid${tokenId}`).html(code)
+    $(`#cat__head-dots${tokenId}`).css('background', '#' + color)  //This changes the color of the cat
     
 }
 
-function decorationSidesColor(color, code) {
+function decorationSidesColor(color, code, tokenId = "") {
     $('#decorationsidescolorbadge').html(code)
-    $('#dnadecorationSides').html(code)
-    $('.cat__head-dots_first, .cat__head-dots_second').css('background', '#' + color)  //This changes the color of the cat
+    $(`#dnadecorationSides${tokenId}`).html(code)
+    $(`#cat__head-dots_first${tokenId}, #cat__head-dots_second${tokenId}`).css('background', '#' + color)  //This changes the color of the cat
     
 }
 
-function animations(val){
-    $('#dnaanimation').html(val)
+function animations(val,tokenId = ""){
+    $(`#dnaanimation${tokenId}`).html(val)
     
     switch(val){
         case 1:
-            animationType1()
+            animationType1(tokenId)
             break;
 
         case 2:
-            animationType2()
+            animationType2(tokenId)
             break;
 
         case 3:
-            animationType3()
+            animationType3(tokenId)
             break;
 
         case 4:
-            animationType4()
+            animationType4(tokenId)
             break;
 
         case 5:
-            animationType5()
+            animationType5(tokenId)
             break;    
 
         case 6:
-            animationType6()
+            animationType6(tokenId)
             break;        
     }
 }
 
-async function normalEyes() {
-    await $('.cat__eye').find('span').css('border', 'none')
+async function normalEyes(tokenId = "") {
+    await $(`#cat__eye${tokenId}`).find('span').css('border', 'none')
 }
 
-async function eyesType1() {
-    await $('.cat__eye').find('span').css('border-top', '15px solid')
+async function eyesType1(tokenId = "") {
+    await $(`#cat__eye${tokenId}`).find('span').css('border-top', '15px solid')
 }
 
-async function eyesType2() {
-    await $('.cat__eye').find('span').css('border-bottom', '15px solid')
+async function eyesType2(tokenId = "") {
+    await $(`#cat__eye${tokenId}`).find('span').css('border-bottom', '15px solid')
 }
 
 
-async function normaldecoration() {
+async function normaldecoration(tokenId = "") {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    await $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
-    await $('.cat__head-dots_first').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-    await $('.cat__head-dots_second').css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
+    await $(`#cat__head-dots${tokenId}`).css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
+    await $(`#cat__head-dots_first${tokenId}`).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+    await $(`#cat__head-dots_second${tokenId}`).css({ "transform": "rotate(0deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
 }
 
-async function decoration1() {
+async function decoration1(tokenId = "") {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    await $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
-    await $('.cat__head-dots_first').css({ "transform": "rotate(45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-    await $('.cat__head-dots_second').css({ "transform": "rotate(-45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
+    await $(`#cat__head-dots${tokenId}`).css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
+    await $(`#cat__head-dots_first${tokenId}`).css({ "transform": "rotate(45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+    await $(`#cat__head-dots_second${tokenId}`).css({ "transform": "rotate(-45deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
 }
 
-async function decoration2() {
+async function decoration2(tokenId = "") {
     //Remove all style from other decorations
     //In this way we can also use normalDecoration() to reset the decoration style
-    await $('.cat__head-dots').css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
-    await $('.cat__head-dots_first').css({ "transform": "rotate(135deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
-    await $('.cat__head-dots_second').css({ "transform": "rotate(-135deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
+    await $(`#cat__head-dots${tokenId}`).css({ "transform": "rotate(0deg)", "height": "48px", "width": "14px", "top": "1px", "border-radius": "0 0 50% 50%" })
+    await $(`#cat__head-dots_first${tokenId}`).css({ "transform": "rotate(135deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "50% 0 50% 50%" })
+    await $(`#cat__head-dots_second${tokenId}`).css({ "transform": "rotate(-135deg)", "height": "35px", "width": "14px", "top": "1px", "border-radius": "0 50% 50% 50%" })
 }
 
-function resetAnimation(){
-    $("#head").removeClass("movingHead")
-    $("#leftEar").removeClass("movingEarsLeft")
-    $("#rightEar").removeClass("movingEarsRight")
-    $("#tail").removeClass("movingTail")
-    $("#leftEar").removeClass("attentionLeft")
-    $("#rightEar").removeClass("attentionRight")
+function resetAnimation(tokenId = ""){
+    $(`#cat__head${tokenId}`).removeClass("movingHead")
+    $(`#leftEar${tokenId}`).removeClass("movingEarsLeft")
+    $(`#rightEar${tokenId}`).removeClass("movingEarsRight")
+    $(`#tail${tokenId}`).removeClass("movingTail")
+    $(`#leftEar${tokenId}`).removeClass("attentionLeft")
+    $(`#rightEar${tokenId}`).removeClass("attentionRight")
 }
 
-async function animationType1(){
+async function animationType1(tokenId = ""){
     resetAnimation()
-    $("#head").addClass("movingHead")
-    $("#leftEar").addClass("movingEarsLeft")
-    $("#rightEar").addClass("movingEarsRight")
-    $('#animationbadge').html("Moving Head")
+    $(`#cat__head${tokenId}`).addClass("movingHead")
+    $(`#leftEar${tokenId}`).addClass("movingEarsLeft")
+    $(`#rightEar${tokenId}`).addClass("movingEarsRight")
+    $(`#animationbadge${tokenId}`).html("Moving Head")
     
 }
 
-async function animationType2(){
+async function animationType2(tokenId = ""){
     //tail
     resetAnimation()
-    $("#tail").addClass("movingTail")
-    $('#animationbadge').html("Tail")
+    $(`#tail${tokenId}`).addClass("movingTail")
+    $(`#animationbadge${tokenId}`).html("Tail")
 }
 
-async function animationType3(){
+async function animationType3(tokenId = ""){
     //ears only
     resetAnimation()
-    $("#leftEar").addClass("movingEarsLeft")
-    $("#rightEar").addClass("movingEarsRight")
-    $('#animationbadge').html("Ears Only")
+    $(`#leftEar${tokenId}`).addClass("movingEarsLeft")
+    $(`#rightEar${tokenId}`).addClass("movingEarsRight")
+    $(`#animationbadge${tokenId}`).html("Ears Only")
 }
 
-async function animationType4(){
+async function animationType4(tokenId = ""){
     //left ear
     resetAnimation()
-    $("#leftEar").addClass("movingEarsLeft")
-    $('#animationbadge').html("Left Ear")
+    $(`#leftEar${tokenId}`).addClass("movingEarsLeft")
+    $(`#animationbadge${tokenId}`).html("Left Ear")
 }
 
-async function animationType5(){
+async function animationType5(tokenId = ""){
     //right ear
     resetAnimation()
-    $("#rightEar").addClass("movingEarsRight")
-    $('#animationbadge').html("Right Ear")
+    $(`#rightEar${tokenId}`).addClass("movingEarsRight")
+    $(`#animationbadge${tokenId}`).html("Right Ear")
 }
 
 
-async function animationType6(){
+async function animationType6(tokenId = ""){
     //attentive
     resetAnimation()
-    $("#leftEar").addClass("attentionLeft")
-    $("#rightEar").addClass("attentionRight")
-    $('#animationbadge').html("Attentive")
+    $(`#leftEar${tokenId}`).addClass("attentionLeft")
+    $(`#rightEar${tokenId}`).addClass("attentionRight")
+    $(`#animationbadge${tokenId}`).html("Attentive")
 }

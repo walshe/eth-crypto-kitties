@@ -16,22 +16,7 @@ var defaultDNA = {
     "lastNum" :  1
     }
 
-// when page load
-$( document ).ready(function() {
-  $('#dnabody').html(defaultDNA.headColor);
-  $('#dnamouth').html(defaultDNA.mouthColor);
-  $('#dnaears').html(defaultDNA.earsColor);
-  $('#dnatail').html(defaultDNA.tailColor);
-    
-  $('#dnashape').html(defaultDNA.eyesShape)
-  $('#dnadecoration').html(defaultDNA.decorationPattern)
-  $('#dnadecorationMid').html(defaultDNA.decorationMidcolor)
-  $('#dnadecorationSides').html(defaultDNA.decorationSidescolor)
-  $('#dnaanimation').html(defaultDNA.animation)
-  $('#dnaspecial').html(defaultDNA.lastNum)
 
-  renderCat(defaultDNA)
-});
 
 function getDna(){
     var dna = ''
@@ -50,123 +35,161 @@ function getDna(){
     return parseInt(dna)
 }
 
-function renderCat(dna, tokenId){
-    headColor(colors[dna.headColor],dna.headColor)
+function renderCat(dna, tokenId = "", generation){
+
+    headColor(colors[dna.headColor],dna.headColor, tokenId)
     $('#bodycolor').val(dna.headColor)
 
-    mouthColor(colors[dna.mouthColor],dna.mouthColor)
+    mouthColor(colors[dna.mouthColor],dna.mouthColor, tokenId)
     $('#mouthcolor').val(dna.mouthColor)
 
-    tailColor(colors[dna.tailColor],dna.tailColor)
+    tailColor(colors[dna.tailColor],dna.tailColor, tokenId)
     $('#tailcolor').val(dna.tailColor)
 
-    earColor(colors[dna.earColor],dna.earsColor)
+    earColor(colors[dna.earColor],dna.earsColor, tokenId)
     $('#earscolor').val(dna.earsColor)
 
-    eyeVariation(dna.eyesShape)
+    eyeVariation(dna.eyesShape, tokenId)
     $('#eyeshape').val(dna.eyesShape)
 
-    decorationVariation(dna.decorationPattern)
+    decorationVariation(dna.decorationPattern, tokenId)
     $('#decorationpattern').val(dna.decorationPattern)
 
-
-    decorationMidColor(colors[dna.decorationMidcolor], dna.decorationMidcolor)
+    decorationMidColor(colors[dna.decorationMidcolor], dna.decorationMidcolor, tokenId)
     $('#decorationmidcolor').val(dna.decorationMidcolor)
 
-    decorationSidesColor(colors[dna.decorationSidescolor], dna.decorationSidescolor)
+    decorationSidesColor(colors[dna.decorationSidescolor], dna.decorationSidescolor, tokenId)
     $('#decorationsidescolor').val(dna.decorationSidescolor)
 
-    animations(dna.animation);
+    animations(dna.animation, tokenId);
     $('#animation').val(dna.animation)
+
+    $(`#generation${tokenId}`).html(generation)
 
 }
 
-// Changing cat colors
-$('#bodycolor').change(()=>{
-    var colorVal = $('#bodycolor').val()
-    headColor(colors[colorVal],colorVal)
-})
 
-$('#mouthcolor').change(()=>{
-  console.log("mouth color changed")
-  var colorVal = $('#mouthcolor').val()
-  mouthColor(colors[colorVal],colorVal)
-})
+function addCatTemplateToRow(rowId, tokenId = ""){
+    
+    $(`#${rowId}`).prepend(
+    `
+    <div class="col-lg-4 catBox m-2 light-b-shadow" id="catBox${tokenId}">
+        <div class="cat">
+            <div class="cat__ear">
+                <div id="leftEar${tokenId}" class="cat__ear--left">
+                    <div class="cat__ear--left-inside"></div>
+                </div>
+                <div id="rightEar${tokenId}" class="cat__ear--right">
+                    <div class="cat__ear--right-inside"></div>
+                </div>
+            </div>
 
-$('#earcolor').change(()=>{
-  console.log("ear color changed")
-  var colorVal = $('#earcolor').val()
-  earColor(colors[colorVal],colorVal)
-})
+            <div id="cat__head${tokenId}" class="cat__head">
+                <div id="midDot" class="cat__head-dots" id="cat__head-dots${tokenId}">
+                    <div class="cat__head-dots_first" id="cat__head-dots_first${tokenId}"></div>
+                    <div class="cat__head-dots_second" id="cat__head-dots_second${tokenId}"></div>
+                </div>
+                <div class="cat__eye" id="cat__eye${tokenId}">
+                    <div class="cat__eye--left">
+                        <span class="pupil-left"></span>
+                    </div>
+                    <div class="cat__eye--right">
+                        <span class="pupil-right"></span>
+                    </div>
+                </div>
+                <div class="cat__nose"></div>
 
-$('#tailcolor').change(()=>{
-  console.log("tail color changed")
-  var colorVal = $('#tailcolor').val()
-  tailColor(colors[colorVal],colorVal)
-})
+                <div class="cat__mouth-contour" id="cat__mouth-contour${tokenId}"></div>
+                <div class="cat__mouth-left" id="cat__mouth-left${tokenId}"></div>
+                <div class="cat__mouth-right" id="cat__mouth-right${tokenId}"></div>
 
-$('#eyeshape').change(()=>{
-  console.log("eye shape changed")
-  var shape = parseInt($('#eyeshape').val()); //between 1 and 7
-  eyeVariation(shape)
-})
+                <div class="cat__whiskers-left"></div>
+                <div class="cat__whiskers-right"></div>
+            </div>
 
-$('#decorationpattern').change(()=>{
-  console.log("decorationpattern changed")
-  var decorationpattern = parseInt($('#decorationpattern').val()); //between 1 and 7
-  decorationVariation(decorationpattern);
-})
+            <div class="cat__body">
 
-$('#decorationmidcolor').change(()=>{
-  console.log("decorationmidcolor changed")
-  var decorationmidcolor = $('#decorationmidcolor').val(); 
-  decorationMidColor(colors[decorationmidcolor],decorationmidcolor);
-})
+                <div class="cat__chest" id="cat__chest${tokenId}"></div>
 
-$('#decorationsidescolor').change(()=>{
-  console.log("decorationsidescolor changed")
-  var decorationsidescolor = $('#decorationsidescolor').val(); 
-  decorationSidesColor(colors[decorationsidescolor],decorationsidescolor);
-})
+                <div class="cat__chest_inner"></div>
 
-$('#animation').change(()=>{
-  console.log("animations changed")
-  var animationsVal = parseInt($('#animation').val()); 
-  animations(animationsVal);
-})
 
-$('#randomKittyButton').click(()=>{
-  console.log("randomKittyButton clicked")
+                <div class="cat__paw-left"></div>
+                <div class="cat__paw-left_inner"></div>
 
-  //between 10 and 98: Math.floor(Math.random() * 89 ) + 10
 
-  //between 1 and 7: Math.floor(Math.random() * 7 ) + 1
-  
-  renderCat({
-    "headColor" : Math.floor(Math.random() * 89 ) + 10,
-    "mouthColor" : Math.floor(Math.random() * 89 ) + 10,
-    "eyesColor" : Math.floor(Math.random() * 89 ) + 10,
-    "earsColor" : Math.floor(Math.random() * 89 ) + 10,
-    "tailColor" : Math.floor(Math.random() * 89 ) + 10,
-    "eyesShape" : Math.floor(Math.random() * 3 ) + 1,
-    "decorationPattern" : Math.floor(Math.random() * 3 ) + 1,
-    "decorationMidcolor" :  Math.floor(Math.random() * 89 ) + 10,
-    "decorationSidescolor" :  Math.floor(Math.random() * 89 ) + 10,
-    "animation" :   Math.floor(Math.random() * 6 ) + 1,
-    "lastNum" :  1
-    })
-  
-})
+                <div class="cat__paw-right"></div>
+                <div class="cat__paw-right_inner"></div>
 
-$('#defaultKittyButton').click(()=>{
-  console.log("defaultKittyButton clicked")
-  renderCat(defaultDNA)
-  
-})
 
-//created the random or default kitty
-$('#createKittyButton').click(()=>{
-  console.log("newKittyButton clicked ", getDna())
-  createKittyInBlockchain(getDna())
-  
-})
+                <div id="tail${tokenId}" class="cat__tail" id="cat__tail${tokenId}"></div>
+            </div>
+        </div>
+        
+
+    </div>
+    `);
+    
+    if(!tokenId){
+        $(`#catBox`).append(`
+            <br>
+            <div class="dnaDiv" id="catDNA-">
+                <b>
+                    DNA:
+                    <!-- Colors -->
+                    <span id="dnabody"></span>
+                    <span id="dnamouth"></span>
+                    <span id="dnaears"></span>
+                    <span id="dnatail"></span>
+
+                    <!-- Cattributes -->
+                    <span id="dnashape"></span>
+                    <span id="dnadecoration"></span>
+                    <span id="dnadecorationMid"></span>
+                    <span id="dnadecorationSides"></span>
+                    <span id="dnaanimation"></span>
+                    <span id="dnaspecial"></span>
+                </b>
+                <br>
+                
+
+            </div>
+        `);
+    }else{
+        $(`.catBox`).css("padding-bottom", "155px");
+        $(`#catBox${tokenId}`).append(`
+            <br>
+                <div class="dnaDiv" id="catDNA">
+                    <b>
+                    Gen:<span id="generation${tokenId}"></span>
+                    </b>
+                    <br>
+                    <b>
+                        DNA:
+                        <!-- Colors -->
+                        <span id="dnabody${tokenId}"></span>
+                        <span id="dnamouth${tokenId}"></span>
+                        <span id="dnaears${tokenId}"></span>
+                        <span id="dnatail${tokenId}"></span>
+
+                        <!-- Cattributes -->
+                        <span id="dnashape${tokenId}"></span>
+                        <span id="dnadecoration${tokenId}"></span>
+                        <span id="dnadecorationMid${tokenId}"></span>
+                        <span id="dnadecorationSides${tokenId}"></span>
+                        <span id="dnaanimation${tokenId}"></span>
+                        
+                    </b>
+                    <br><b><span id="eyeshapebadge${tokenId}"></span> eye shape</b>
+                    <br><b><span id="decorationpatternbadge${tokenId}"></span> decoration pattern</b>
+                    <br><b><span id="animationbadge${tokenId}"></span> animation</b>
+                    
+
+                </div>
+            <br>
+        `);    
+    }
+
+
+}
+
