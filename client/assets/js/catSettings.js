@@ -190,6 +190,8 @@ function addCatTemplateToRow(rowId, tokenId = ""){
         `);    
     }
 
+    
+
 
 }
 
