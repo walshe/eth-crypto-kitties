@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            Kitty Factory
+        </h2>
+        <p>
+            Create a gen zero kitty (limited)
+        </p>
+        <p>
+
+        </p>
+        <div class="row" id="factoryCat">
+            
+            <div class="col-md-4">
+                <div class="tabbable" id="tabs-932211">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#catcolors" data-toggle="tab">Cat Colors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#cattributes" data-toggle="tab">Cattributes</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="catcolors" role="tabpanel" aria-labelledby="home-tab" style="padding-top: 20px;">
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Head and body</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="bodycolorbadge"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="bodycolor">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Mouth</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="mouthcodebadge"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="mouthcolor">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Ears</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="earcolorbadge"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="earcolor">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Tail</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="tailcolorbadge"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="tailcolor">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="cattributes" role="tabpanel" aria-labelledby="profile-tab"  style="padding-top: 20px;">
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Eye Shape</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="eyeshapebadge">xxx</span></label>
+                                <input type="range" min="1" max="3" class="form-control-range" id="eyeshape">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Decoration Pattern</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="decorationpatternbadge">yyy</span></label>
+                                <input type="range" min="1" max="3" class="form-control-range" id="decorationpattern">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Decoration Mid Color</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="decorationmidcolorbadge"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="decorationmidcolor">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Decoration Sides Color</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="decorationsidescolorbadge"></span></label>
+                                <input type="range" min="10" max="98" class="form-control-range" id="decorationsidescolor">
+                            </div>
+        
+                            <div class="form-group">
+                                <label for="formControlRange"><b>Animation</b><span class="badge badge-dark ml-2" style="color:black;background-color: cadetblue;"
+                                        id="animationbadge"></span></label>
+                                <input type="range" min="1" max="6" class="form-control-range" id="animation">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="factorySettings">
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <button type="button" class="btn btn-success" id="randomKittyButton">
+                            Generate Random Kitty
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+
+                        <button type="button" class="btn btn-secondary" id="defaultKittyButton">
+                            Generate Default Kitty
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <button type="button" class="btn btn-primary" id="createKittyButton">
+                            Create Kitty (on blockchain)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="assets/js/factory.js"></script>

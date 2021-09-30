@@ -31,8 +31,8 @@ contract Kittycontract is IERC721, Ownable {
     }
 
     Kitty[] kitties;
-    mapping(uint256 => address) kittyIndexToOwner;
-    mapping(address => uint256) ownershipTokenCount;
+    mapping(uint256 => address) public kittyIndexToOwner; //todo take away public
+    mapping(address => uint256) public ownershipTokenCount; //todo take away public
 
     //approved adddresses for kitty transfer
     mapping(uint256 => address) public kittyIndexToApproved;
@@ -44,7 +44,8 @@ contract Kittycontract is IERC721, Ownable {
 
     function breed(uint256 dadId, uint256 mumId) public returns (uint256){
         //check ownership of parents
-        require(_owns(msg.sender, dadId) && _owns(msg.sender, mumId), "User doesnt wither mumId or dadId");
+        require(_owns(msg.sender, mumId), "User doesnt own mum/dame");
+        require(_owns(msg.sender, dadId), "User doesnt own dad/sire");
         
         (uint256 dadGenes, , , , uint256 dadGeneration) = getKitty(dadId); //save memory by not loading values into vars
         (uint256 mumGenes, , , , uint256 mumGeneration) = getKitty(mumId); //save memory by not loading values into vars
@@ -216,6 +217,7 @@ contract Kittycontract is IERC721, Ownable {
         returns (bool)
     {
         require(kittyIndexToOwner[tokenId] == claimant);
+        return true;
     }
 
     function _approve(uint256 _tokenId, address _approved)

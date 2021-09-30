@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-12">
+        <h2>
+            Breed
+        </h2>
+        <p>
+            Choose a Dame and Sire to breed from your wallet
+        </p>
+        <p>
+
+        </p>
+        <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="javascript:launchDameSelectionModel()">Select Dame</a>
+
+            </div>
+            <div class="col-md-6">
+                <a class="btn btn-primary btn-large" href="javascript:launchSireSelectionModel()">Select Sire</a>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" id="dameDiv">
+            </div>
+            <div class="col-md-6" id="sireDiv">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a id="fuckButton" class="btn btn-success btn-large" style="display: none;">Let chosen parents do their thing!</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="parentSelectionModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Choose parent</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row" id="catalogBreedCats">
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/breed.js"></script>
