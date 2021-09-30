@@ -73,7 +73,7 @@ contract Kittycontract is IERC721, Ownable {
     }
 
     //ERC165 often appears when contract to contract interaction is needed
-    function supportsInterface(bytes4 _interfaceId) external view returns (bool){
+    function supportsInterface(bytes4 _interfaceId) external pure returns (bool){
         return (_interfaceId == _INTERFACE_ID_ERC721 || _interfaceId == _INTERFACE_ID_ERC165);
     }
 
@@ -375,13 +375,44 @@ contract Kittycontract is IERC721, Ownable {
         return size > 0;
     }
 
-    function _mixDna(uint256 dadId, uint256 mumId) internal returns(uint256){
-        uint256 firstHalf = dadId/100000000;
-        uint256 secondHalf = mumId%100000000;
+    function _mixDna(uint256 dadGenes, uint256 mumGenes) internal pure returns(uint256){
+        uint256 firstHalf = dadGenes/100000000;
+        uint256 secondHalf = mumGenes%100000000;
 
         uint256 newDna = firstHalf * 100000000;
         newDna = newDna + secondHalf;
         return newDna;
+
+    }
+
+    function _mixDnaComplex(uint256 dadGenes, uint256 mumGenes) internal view returns(uint256){
+        
+        uint256[8] memory geneArray;
+        uint8 random = uint8(now % 255); //binary between 00000000 11111111
+        uint256 i = 1;
+        uint256 index = 7;
+
+        for(i=1 ; i<=128 ; i=i*2){
+            if(random & i != 0){
+                geneArray[index] = uint8(mumGenes % 100);
+            }else{
+                geneArray[index] = uint8(dadGenes % 100);    
+            }
+            mumGenes = mumGenes / 100;
+            dadGenes = dadGenes / 100;
+
+            index = index - 1;
+
+        }
+
+        uint256 newGene;
+        for(i=0;i<8;i++){
+            newGene = newGene +geneArray[i];
+            if(i != 7){
+                newGene = newGene * 100;
+            }
+        }
+        return newGene;
 
     }
 }

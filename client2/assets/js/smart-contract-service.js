@@ -4,7 +4,7 @@ var instance; //contract instance
 
 var user;
 
-var contractAddress = "0xaae60000f20b6A0f988979Adf349b59a2AAdA284";
+var contractAddress = "0xF1ff8dBEC17b69215051eEb43fa00517b0945C05";
 
 var account;
 
