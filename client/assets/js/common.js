@@ -300,7 +300,23 @@ function renderCat(dna, tokenId = "", generation){
     $(`#generation${tokenId}`).html(generation)    
 }
 
-function createCatDiv(kitty, addSelectionOption = false){
+async function buildBuySellMarkup(tokenId){
+    
+    //call getOffer on marketplace to see if we have already have an offer up
+
+    const offer = await getOffer(tokenId);
+    console.log(`offer : ${JSON.stringify(offer)}`)
+    
+    if(offer.active){
+        return `<span>Currently For Sale for ${web3.utils.fromWei(offer.price, 'ether')} ETH &nbsp;<a class="btn btn-danger btn-sm" id="cancel${tokenId}" href="javascript:">Cancel</a></span>`
+    }else{
+        return `<span><a class="btn btn-success btn-sm" href="javascript:" id="sell${tokenId}">Sell me</a>&nbsp;<input type="number" step="0.01" id="ethAmount${tokenId}" class="form-control form-control-sm" type="text" placeholder="ETH amount"></span>`
+    }
+    
+    
+}
+
+async function createCatDiv(kitty, addSelectionOption = false, addSellOrCancelOption = false){
 
     let tokenId = (kitty) ? kitty.tokenId : ""
 
@@ -387,6 +403,7 @@ function createCatDiv(kitty, addSelectionOption = false){
                         <br><b><span id="decorationpatternbadge${tokenId}"></span> decoration pattern</b>
                         <br><b><span id="animationbadge${tokenId}"></span> animation</b>
                         ${(addSelectionOption == true) ? `<br><button id="parentSelectionButton${tokenId}">Select</button>` : ``} 
+                        ${(addSellOrCancelOption == true) ? `<br>${await buildBuySellMarkup(tokenId)}` : ``} 
                         
 
                     </div>

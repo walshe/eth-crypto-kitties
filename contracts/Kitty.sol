@@ -42,6 +42,12 @@ contract Kittycontract is IERC721, Ownable {
 
     uint256 gen0Counter;
 
+    constructor() public Ownable() {
+        owner = msg.sender;
+        //create a cat that no one will own, we will use it so that no cat can have an token id of zero (which would cause issues in the marketplace offers array)
+        _createKitty(0, 0, 0, uint256(-1), address(0));
+    }
+
     function breed(uint256 dadId, uint256 mumId) public returns (uint256){
         //check ownership of parents
         require(_owns(msg.sender, mumId), "User doesnt own mum/dame");
@@ -68,9 +74,7 @@ contract Kittycontract is IERC721, Ownable {
         _createKitty(mumId, dadId, uint32(kidGen), newGenes, msg.sender);
     }
 
-    constructor() public Ownable() {
-        owner = msg.sender;
-    }
+
 
     //ERC165 often appears when contract to contract interaction is needed
     function supportsInterface(bytes4 _interfaceId) external pure returns (bool){

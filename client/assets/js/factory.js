@@ -1,7 +1,7 @@
 
 
 
-$(document).ready(function () {
+$(document).ready(async function () {
 
     //listeners
     $('#bodycolor').change(() => {
@@ -87,13 +87,11 @@ $(document).ready(function () {
     })
 
     //created the random or default kitty
-    $('#createKittyButton').click(() => {
+    $('#createKittyButton').click(async () => {
         console.log("newKittyButton clicked ", getDna())
 
-        alert("TODO need to add the DNA section underneath cats in factory")
-
-
-        createKittyInBlockchain(getDna())
+        await createKittyInBlockchain(getDna())
+        loadPage("./catalogue.html")
 
     })
 
@@ -101,7 +99,7 @@ $(document).ready(function () {
 
     console.log('loading factory')
 
-    let catDiv = createCatDiv()
+    let catDiv = await createCatDiv()
 
     $("#factoryCat").prepend(catDiv)
 

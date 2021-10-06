@@ -10,7 +10,7 @@ function launchSireSelectionModel() {
   $("#parentSelectionModal").modal("show");
 }
 
-function selectParent(tokenId) {
+async function selectParent(tokenId) {
   console.log("isDameSelection", isDameSelection);
   console.log("tokenId", tokenId);
 
@@ -19,7 +19,7 @@ function selectParent(tokenId) {
   let kitty = ownedKitties.filter((k) => k.tokenId == tokenId)[0];
 
   //addCatTemplateToRow("dameDiv", kitty.tokenId);
-  let catDiv = createCatDiv(kitty, false);
+  let catDiv = await createCatDiv(kitty, false);
 
   if (isDameSelection == true) {
     dameId = tokenId 
@@ -71,15 +71,17 @@ function selectParent(tokenId) {
   }
 }
 
-$(document).ready(function () {
+$(document).ready(async function () {
   console.log("loading kit into modal");
 
-  $("#fuckButton").click(function(){
-    breed(sireId, dameId)
+  $("#fuckButton").click(async function(){
+    await breed(sireId, dameId)
+    debugger
+    loadPage("./catalogue.html")
   })
 
   for (let i = 0; i < ownedKitties.length; i++) {
-    let catDiv = createCatDiv(ownedKitties[i], true);
+    let catDiv = await createCatDiv(ownedKitties[i], true, false);
 
     $("#catalogBreedCats").prepend(catDiv);
     $(`#catBox${ownedKitties[i].tokenId}`).attr(
@@ -117,6 +119,7 @@ $(document).ready(function () {
     $(`#parentSelectionButton${ownedKitties[i].tokenId}`).click(
       { tokenId: ownedKitties[i].tokenId },
       function (e) {
+        debugger
         console.log(e.data.tokenId);
         selectParent(e.data.tokenId);
       }
