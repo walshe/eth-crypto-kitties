@@ -76,8 +76,8 @@ $(document).ready(async function () {
 
   $("#fuckButton").click(async function(){
     await breed(sireId, dameId)
-    debugger
-    loadPage("./catalogue.html")
+    
+    //loadPage("./catalogue.html")
   })
 
   for (let i = 0; i < ownedKitties.length; i++) {
@@ -86,7 +86,7 @@ $(document).ready(async function () {
     $("#catalogBreedCats").prepend(catDiv);
     $(`#catBox${ownedKitties[i].tokenId}`).attr(
       "style",
-      "padding-bottom: 175px !important"
+      "padding-bottom: 205px !important"
     );
 
     let headColor = parseInt(ownedKitties[i].genes.substring(0, 2));

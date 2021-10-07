@@ -91,7 +91,7 @@ $(document).ready(async function () {
         console.log("newKittyButton clicked ", getDna())
 
         await createKittyInBlockchain(getDna())
-        loadPage("./catalogue.html")
+        //loadPage("./catalogue.html")
 
     })
 

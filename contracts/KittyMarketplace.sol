@@ -152,6 +152,6 @@ contract KittyMarketPlace is IKittyMarketPlace, Ownable{
         _kittyContract.transferFrom(offer.seller, msg.sender, _tokenId);
 
         
-        emit MarketTransaction("But", msg.sender, _tokenId);
+        emit MarketTransaction("Buy", msg.sender, _tokenId);
     }
 }

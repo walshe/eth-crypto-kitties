@@ -8,7 +8,7 @@ $(document).ready(async function () {
     let catDiv = await createCatDiv(ownedKitties[i], false, true);
 
     $("#catalogCats").prepend(catDiv);
-    $(`.catBox`).css("padding-bottom", "155px");
+    $(`.catBox`).css("padding-bottom", "225px");
 
     let headColor = parseInt(ownedKitties[i].genes.substring(0, 2));
     let mouth = parseInt(ownedKitties[i].genes.substring(2, 4));
@@ -53,7 +53,7 @@ $(document).ready(async function () {
         await sellKitty(e.data.tokenId, price)
 
         //if successful we need to update catalogue page
-        loadPage("./catalogue.html");
+        //loadPage("./catalogue.html");
 
       }
     );
@@ -65,16 +65,17 @@ $(document).ready(async function () {
           console.log(`tokenId : ${e.data.tokenId}`);
   
           //launch buy transaction
+          debugger
           await removeOffer(e.data.tokenId)
   
           //if successful we need to update catalogue page
-          loadPage("./catalogue.html");
+          //loadPage("./catalogue.html");
   
         }
       );
 
 
 
-    removeOffer
+    
   }
 });
