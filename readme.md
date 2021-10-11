@@ -5,6 +5,22 @@ Digital cats on the blockchain
 
 Demonstrates NFTs on Ethereum (ERC-721)
 
+1. Home
+
+    ![home](/img/home.png)
+
+2. Factory
+
+    ![factory](/img/factory.png)    
+
+3. Catalogue
+
+    ![catalogue](/img/catalogue.png)        
+
+4. Marketplace
+
+    ![catalogue](/img/marketplace.png)        
+
 
 ## Development environment
 
