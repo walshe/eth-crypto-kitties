@@ -1,4 +1,6 @@
 $(document).ready(async function () {
+
+  //debugger
     
   console.log("loading catalogue with", ownedKitties);
 
@@ -65,7 +67,7 @@ $(document).ready(async function () {
           console.log(`tokenId : ${e.data.tokenId}`);
   
           //launch buy transaction
-          debugger
+          //debugger
           await removeOffer(e.data.tokenId)
   
           //if successful we need to update catalogue page

@@ -119,7 +119,7 @@ $(document).ready(async function () {
     $(`#parentSelectionButton${ownedKitties[i].tokenId}`).click(
       { tokenId: ownedKitties[i].tokenId },
       function (e) {
-        debugger
+        //debugger
         console.log(e.data.tokenId);
         selectParent(e.data.tokenId);
       }

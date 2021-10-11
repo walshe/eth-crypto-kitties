@@ -1,10 +1,13 @@
-var kittyContractAddress = "0x6c545C6130d061FfcFB96B08Ea6151a643281754";
-var marketplaceContractAddress = "0x31646B95763C8Fe686C6C042ba2184c20C3Db342";
+var kittyContractAddress = "0xa68B2805a1eE5cf4C41297555ccfFD6B7D1cF888";
+var marketplaceContractAddress = "0xCFd66461338e38a1016220eB9Baf4E0F0FC4F4D9";
 
 var web3 = new Web3(Web3.givenProvider);
 
 var kittyContractInstance;
 var marketplaceContractInstance;
+
+var birthSubscribe
+var marketEventSubscribe
 
 var user;
 
@@ -15,8 +18,14 @@ var kittiesForSale;
 
 $(document).ready(async function () {
   console.log("loading web3");
-
+  
   async function initAccountAndContracts(userAccount){
+    //await web3.eth.clearSubscriptions()
+    birthSubscribe = undefined
+    marketEventSubscribe = undefined
+
+    // (birthSubscribe) ? birthSubscribe.unsubscribe() : ()=>{}
+    // (marketEventSubscribe) ? marketEventSubscribe.unsubscribe() : ()=>{}
     account = userAccount;
     user = userAccount
 
@@ -35,8 +44,8 @@ $(document).ready(async function () {
 
     await getAllKittiesOwned();
 
-    kittyContractInstance.events
-      .Birth({ filter: { owner: account } })
+    birthSubscribe = kittyContractInstance.events
+      .Birth({fromBlock: 'latest'})
       .on("data", async function (event) {
         let owner = event.returnValues.owner;
         let kittenId = event.returnValues.kittenId;
@@ -67,8 +76,8 @@ $(document).ready(async function () {
       })
       .on("error", () => console.error("Error receiving Birth event"));
 
-    marketplaceContractInstance.events
-      .MarketTransaction()
+    marketEventSubscribe = marketplaceContractInstance.events
+      .MarketTransaction({fromBlock: 'latest'})
       .on("data", function (event) {
         var eventType = event.returnValues["TxType"].toString();
         var tokenId = event.returnValues["tokenId"];
@@ -82,7 +91,7 @@ $(document).ready(async function () {
         } else if (eventType == "Create Offer") {
           // successfully put up for sale
           //this is really where the UI should be changed to Cancel Sale
-          debugger
+          //debugger
           alert("Kitty successfully offered up for sale");
           loadPage("./catalogue.html");
         } else if (eventType == "Remove Offer") {
@@ -95,7 +104,7 @@ $(document).ready(async function () {
   };
 
   window.ethereum.on('accountsChanged', async function (accounts) {
-    console.log(`account changed to ${accounts[0]}`)
+    alert(`account changed to ${accounts[0]}`)
     await initAccountAndContracts(accounts[0])
     loadPage("./catalogue.html")
   })
@@ -103,7 +112,7 @@ $(document).ready(async function () {
 
 
   window.ethereum.enable().then(async function (accounts) {
-
+    console.log("initing contract for ", accounts[0])
     await initAccountAndContracts(accounts[0])
   })
 
@@ -131,10 +140,15 @@ const getAllKittiesOwned = async () => {
 
     console.log("events are " + JSON.stringify(events))
 
+    
+
     //for each event, check if we still own the token otherwise discard
     if (events) {
-      for (var i = 0; i < events.length; i++) {
-        const tokenId = events[i].returnValues["tokenId"];
+      
+      let uniqueTokenIds = [ ...new Set(events.map( (e) => e.returnValues["tokenId"])) ] //dedupe as same cat may have transferred back an forth
+      //debugger
+      for(var i = 0; i < uniqueTokenIds.length; i++) {
+        const tokenId = uniqueTokenIds[i]
         console.log("checking if user still owns ");
         const owner = await kittyContractInstance.methods
           .ownerOf(tokenId)
